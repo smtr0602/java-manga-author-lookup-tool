@@ -40,13 +40,13 @@ public class LookupTool {
 					App.exitApp();
 					break;
 				default:
-					Utils.showMessage("Wrong input. Please enter one of the numbers listed.");
+					Utils.showMessage("Wrong input. Please enter one of the numbers listed.", false);
 					continue;
 				}
 				isValid = true;
 
 			} catch (InputMismatchException e) {
-				Utils.showMessage("Wrong input. Please enter a number");
+				Utils.showMessage("Wrong input. Please enter a number", false);
 				scanner.next();
 			}
 		}
@@ -60,7 +60,7 @@ public class LookupTool {
 		}
 		while (!isValid) {
 			try {
-				Utils.showMessage("【 Admin Menu 】What would you like to do?");
+				Utils.showMessage("【 Admin Menu 】What would you like to do?", false);
 				System.out.println("  1: Add New Entry");
 				System.out.println("  2: Edit Entry");
 				System.out.println("  3: Delete Entry");
@@ -84,10 +84,10 @@ public class LookupTool {
 					throw new Exception("Wrong input. Please enter one of the numbers listed.");
 				}
 			} catch (InputMismatchException e) {
-				Utils.showMessage("Wrong input. Please enter a number.");
+				Utils.showMessage("Wrong input. Please enter a number.", false);
 				scanner.next();
 			} catch (Exception e) {
-				Utils.showMessage(e.getMessage());
+				Utils.showMessage(e.getMessage(), false);
 			}
 		}
 	}
@@ -99,11 +99,13 @@ public class LookupTool {
 	 */
 	private String getUserSearchedManga() {
 		String targetMangaTitle = "";
+		
+		Utils.clearConsole();
 
 		boolean isValid = false;
 		while (!isValid) {
 			ArrayList<String> matches = new ArrayList<>();
-			Utils.showMessage("Enter keyword(s) of Manga to find:");
+			Utils.showMessage("Enter keyword(s) of Manga to find:", false);
 
 			String input = scanner.nextLine();
 			for (String title : model.getCollection().keySet()) {
@@ -112,16 +114,16 @@ public class LookupTool {
 				}
 			}
 			if (matches.size() == 0) {
-				Utils.showMessage("No item found :(");
+				Utils.showMessage("No item found :(", true);
 				promptNextAction();
 				continue;
 			}
-
+			
 			Utils.clearConsole();
 			
 			boolean isValidTitleNum = false;
 			while (!isValidTitleNum) {
-				Utils.showMessage(matches.size() + " item(s) found. Select with number key");
+				Utils.showMessage(matches.size() + " item(s) found. Select with number key", false);
 				for (int i = 0; i < matches.size(); i++) {
 					System.out.println((i + 1) + ": " + matches.get(i));
 				}
@@ -131,10 +133,10 @@ public class LookupTool {
 					targetMangaTitle = matches.get(titleNum - 1);
 					isValidTitleNum = true;
 				} catch (InputMismatchException e) {
-					Utils.showMessage("Wrong input. Please enter a number.");
+					Utils.showMessage("Wrong input. Please enter a number.", false);
 					scanner.next();
 				} catch (IndexOutOfBoundsException e) {
-					Utils.showMessage("Wrong input. Please enter one of the numbers listed.");
+					Utils.showMessage("Wrong input. Please enter one of the numbers listed.", false);
 				}
 			}
 			isValid = true;
@@ -179,10 +181,10 @@ public class LookupTool {
 			}
 			String result = model.setCollection(titleInput, authorInputEn, authorInputJa);
 			if (!result.equals("success")) {
-				Utils.showMessage(result);
+				Utils.showMessage(result, false);
 				return;
 			}
-			Utils.showMessage("Successfully added!");
+			Utils.showMessage("Successfully added!", true);
 			promptNextAction();
 		}
 	}
@@ -204,10 +206,10 @@ public class LookupTool {
 
 			String result = model.setCollection(title, newNameEn, newNameJa);
 			if (!result.equals("success")) {
-				Utils.showMessage(result);
+				Utils.showMessage(result, false);
 				return;
 			}
-			Utils.showMessage("Successfully updated!");
+			Utils.showMessage("Successfully updated!", true);
 			promptNextAction();
 		}
 	}
@@ -222,10 +224,10 @@ public class LookupTool {
 
 			String result = model.removeFromCollection(title);
 			if (!result.equals("success")) {
-				Utils.showMessage(result);
+				Utils.showMessage(result, false);
 				return;
 			}
-			Utils.showMessage("Successfully deleted!");
+			Utils.showMessage("Successfully deleted!", true);
 			promptNextAction();
 		}
 	}
@@ -239,11 +241,9 @@ public class LookupTool {
 	private String promptContinueOrModify(String[] texts) {
 		String message = null;
 		
-		Utils.clearConsole();
-		
 		boolean isValidConfirmInputNum = false;
 		while (!isValidConfirmInputNum) {
-			Utils.showMessage("Please Confirm:");
+			Utils.showMessage("Please Confirm the following:", true);
 			System.out.println("・・・・・・・・・・・・・・・・・・・");
 			for (String text : texts) {
 				System.out.println(" " + text);
@@ -268,10 +268,10 @@ public class LookupTool {
 					throw new Exception("Wrong input. Please enter one of the numbers listed.");
 				}
 			} catch (InputMismatchException e) {
-				Utils.showMessage("Wrong input. Please enter a number.");
+				Utils.showMessage("Wrong input. Please enter a number.", false);
 				scanner.next();
 			} catch (Exception e) {
-				Utils.showMessage(e.getMessage());
+				Utils.showMessage(e.getMessage(), false);
 			}
 		}
 		return message;
@@ -284,7 +284,7 @@ public class LookupTool {
 		boolean isValid = false;
 		while (!isValid) {
 			try {
-				Utils.showMessage("Choose action:");
+				Utils.showMessage("Choose action:", false);
 				System.out.println("  1: Do it again");
 				System.out.println("  2: Main Menu");
 				System.out.println("  3: Quit App");
@@ -303,10 +303,10 @@ public class LookupTool {
 					throw new Exception("Wrong input. Please enter one of the numbers listed.");
 				}
 			} catch (InputMismatchException e) {
-				Utils.showMessage("Wrong input. Please enter a number.");
+				Utils.showMessage("Wrong input. Please enter a number.", false);
 				scanner.next();
 			} catch (Exception e) {
-				Utils.showMessage(e.getMessage());
+				Utils.showMessage(e.getMessage(), false);
 			}
 		}
 	}

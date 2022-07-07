@@ -13,6 +13,8 @@ public class Admin {
 	}
 
 	void promptLogin() {
+		Utils.clearConsole();
+		
 		Utils.showEmphasizedText("Please login:");
 
 		boolean isValid = false;
@@ -25,14 +27,12 @@ public class Admin {
 
 			// wrong username
 			if (model.getAdminUsers().get(usernameInput) == null) {
-				Utils.showMessage("User not found :( Please try again. \n");
-				Utils.clearConsole();
+				Utils.showMessage("User not found :( Please try again. \n", false);
 				continue;
 
 				// wrong password
 			} else if (!passwordInput.equals(model.getAdminUsers().get(usernameInput))) {
-				Utils.showMessage("Wrong password :( Please try again. \n");
-				Utils.clearConsole();
+				Utils.showMessage("Wrong password :( Please try again. \n", false);
 				continue;
 			}
 

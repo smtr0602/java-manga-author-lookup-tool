@@ -19,8 +19,9 @@ public class Utils {
 		return capitalizeWord.trim();
 	}
 	
-	public static void showMessage(String message) {
-		clearConsole();
+	public static void showMessage(String message, boolean clearsConsole) {
+		if(clearsConsole) clearConsole();
+		
 		System.out.println("\n> " + message);
 	}
 	
@@ -40,7 +41,7 @@ public class Utils {
 
 			}
 		} catch (Exception e) {
-			showMessage(e.getMessage());
+			showMessage(e.getMessage(), false);
 		}
 	}
 }

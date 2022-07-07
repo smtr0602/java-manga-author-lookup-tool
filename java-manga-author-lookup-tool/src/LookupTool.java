@@ -64,21 +64,26 @@ public class LookupTool {
 				System.out.println("  1: Add New Entry");
 				System.out.println("  2: Edit Entry");
 				System.out.println("  3: Delete Entry");
+				System.out.println("  4: Main Menu");
 				int input = scanner.nextInt();
 				scanner.nextLine(); // prevent subsequent nextLine() skip
 
 				switch (input) {
 				case 1:
-					addAuthor();
 					isValid = true;
+					addAuthor();
 					break;
 				case 2:
-					editAuthor();
 					isValid = true;
+					editAuthor();
 					break;
 				case 3:
-					deleteEntry();
 					isValid = true;
+					deleteEntry();
+					break;
+				case 4:
+					isValid = true;
+					init();
 					break;
 				default:
 					throw new Exception("Wrong input. Please enter one of the numbers listed.");
@@ -252,6 +257,7 @@ public class LookupTool {
 			System.out.println("");
 			System.out.println("  1: Continue");
 			System.out.println("  2: Modify");
+			System.out.println("  3: Main Menu");
 
 			try {
 				int confirmInput = scanner.nextInt();
@@ -263,6 +269,10 @@ public class LookupTool {
 				case 2:
 					isValidConfirmInputNum = true;
 					message = "modify";
+					break;
+				case 3:
+					isValidConfirmInputNum = true;
+					init();
 					break;
 				default:
 					throw new Exception("Wrong input. Please enter one of the numbers listed.");

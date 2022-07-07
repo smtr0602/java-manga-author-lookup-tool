@@ -13,7 +13,7 @@ public class Admin {
 	}
 
 	void promptLogin() {
-		App.showEmphasizedText("Please login:");
+		Utils.showEmphasizedText("Please login:");
 
 		boolean isValid = false;
 		while (!isValid) {
@@ -25,14 +25,14 @@ public class Admin {
 
 			// wrong username
 			if (model.getAdminUsers().get(usernameInput) == null) {
-				App.showMessage("User not found :( Please try again. \n");
-				App.clearConsole();
+				Utils.showMessage("User not found :( Please try again. \n");
+				Utils.clearConsole();
 				continue;
 
 				// wrong password
 			} else if (!passwordInput.equals(model.getAdminUsers().get(usernameInput))) {
-				App.showMessage("Wrong password :( Please try again. \n");
-				App.clearConsole();
+				Utils.showMessage("Wrong password :( Please try again. \n");
+				Utils.clearConsole();
 				continue;
 			}
 
@@ -40,7 +40,7 @@ public class Admin {
 			isLoggedIn = true;
 			setUsername(usernameInput);
 
-			App.clearConsole();
+			Utils.clearConsole();
 			System.out.println("\n*********************************");
 			System.out.println("  WELCOME BACK, " + username + "!");
 			System.out.println("*********************************");

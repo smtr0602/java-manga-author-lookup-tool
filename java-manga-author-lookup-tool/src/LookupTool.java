@@ -198,7 +198,7 @@ public class LookupTool {
 		String title = getUserSearchedManga();
 		while (true) {
 			System.out.println("\nEnter new author name (English)");
-			String newNameEn = scanner.nextLine();
+			String newNameEn = Utils.capitalizeEveryWord(scanner.nextLine());
 
 			System.out.println("\nEnter new author name (Japanese)");
 			String newNameJa = scanner.nextLine();

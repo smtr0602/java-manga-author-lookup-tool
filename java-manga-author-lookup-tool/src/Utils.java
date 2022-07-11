@@ -8,7 +8,6 @@ public class Utils {
 	 * @return formatted string
 	 */
 	public static String capitalizeEveryWord(String str) {
-
 		String words[] = str.split("\\s");
 		String capitalizeWord = "";
 		for (String w : words) {
